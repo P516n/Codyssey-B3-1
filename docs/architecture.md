@@ -8,7 +8,7 @@
 
 ## 📌 아키텍처 다이어그램
 
-![OCI 인프라 아키텍처 다이어그램](./architecture.png)
+![OCI 인프라 아키텍처 다이어그램](./images/architecture.png)
 
 ---
 

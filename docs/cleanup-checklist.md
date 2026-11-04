@@ -8,11 +8,11 @@
 
 | 번호 | 리소스 구분 (AWS ↔ OCI) | 리소스 명칭 / ID | 정리 작업 내용 | 정리 상태 | 확인 일시 |
 | :---: | :--- | :--- | :--- | :---: | :---: |
-| **1** | **EC2 (Compute Instance)** | `codyssey-web-server` | 인스턴스 종료(Terminate) 수행 | [x] 완료 (Terminated) | 2026-10-15 |
-| **2** | **EBS (Boot Volume)** | `codyssey-web-server (Boot Volume)` | 인스턴스 종료 시 영구 삭제 옵션 체크로 볼륨 함께 삭제 | [x] 완료 (Terminated) | 2026-10-15 |
-| **3** | **Elastic IP (Public IP)** | Ephemeral / Reserved IP | 공용 IP 자동 회수 및 예약 IP 해제(Release) | [x] 완료 (Released) | 2026-10-15 |
-| **4** | **Internet Gateway (IGW)** | `codyssey-igw` | VCN 상세에서 IGW 삭제 | [x] 완료 (Deleted) | 2026-10-15 |
-| **5** | **VPC (VCN & Subnets)** | `codyssey-vcn`<br>- `codyssey-public-subnet`<br>- Route Table / Security List | 서브넷 삭제 후 VCN 최종 삭제 완료 | [x] 완료 (Deleted) | 2026-10-15 |
+| **1** | **EC2 (Compute Instance)** | `codyssey-web-server` | 인스턴스 종료(Terminate) 수행 | [ ] 미이행 (Terminated) | 2026-10-15 |
+| **2** | **EBS (Boot Volume)** | `codyssey-web-server (Boot Volume)` | 인스턴스 종료 시 영구 삭제 옵션 체크로 볼륨 함께 삭제 | [] 미이행 (Terminated) | 2026-10-15 |
+| **3** | **Elastic IP (Public IP)** | Ephemeral / Reserved IP | 공용 IP 자동 회수 및 예약 IP 해제(Release) | [] 미이행 (Released) | 2026-10-15 |
+| **4** | **Internet Gateway (IGW)** | `codyssey-igw` | VCN 상세에서 IGW 삭제 | [] 미이행 (Deleted) | 2026-10-15 |
+| **5** | **VPC (VCN & Subnets)** | `codyssey-vcn`<br>- `codyssey-public-subnet`<br>- Route Table / Security List | 서브넷 삭제 후 VCN 최종 삭제 완료 | [] 미이행 (Deleted) | 2026-10-15 |
 
 ---
 
@@ -44,12 +44,3 @@
 - [x] **Billing & Cost Management** → **Cost Analysis** 확인
 - [x] 잔여 유료 리소스(Running Instance, Block Storage, NAT Gateway, Load Balancer 등)가 존재하지 않음을 확인
 - [x] 실습 전용 구획(`codyssey-compartment`) 내 리소스 탐색기(Resource Explorer) 조회 결과 0건 확인
-
----
-
-## 📸 리소스 정리 증빙 스크린샷 (선택)
-
-> 실습 종료 후 콘솔 화면 캡처 이미지를 `docs/` 폴더에 추가하고 아래에 연결합니다.
-
-![인스턴스 종료 및 VCN 삭제 확인](./images/cleanup-proof.png)
-*(인스턴스 Terminated 상태 및 볼륨 삭제 화면 또는 Billing 대시보드 스크린샷)*
