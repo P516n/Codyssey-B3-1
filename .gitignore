@@ -1,0 +1,17 @@
+# Agent workspace directory (internal specifications, manuals, keys)
+.agent/
+
+# SSH private keys and sensitive credentials
+*.key
+*.pem
+
+# Draw.io backup / lock files
+.$*.bkp
+*.bkp
+~$*
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
