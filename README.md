@@ -13,9 +13,28 @@
 
 ---
 
+## 🔄 AWS ↔ OCI 인프라 개념 1:1 대응표
+
+클라우드 업계 표준으로 널리 활용되는 AWS의 인프라 아키텍처 모델을 기준으로, OCI(Oracle Cloud Infrastructure) 환경에서 동일한 수준의 가상 사설 네트워크, 컴퓨팅, 보안 계층을 직접 설계하고 구현하여 상호 비교 분석을 수행했습니다.
+
+| 클라우드 표준 아키텍처 (AWS) | 프로젝트 구현 (OCI) | 설명 및 설정값 |
+| :--- | :--- | :--- |
+| **VPC** | **VCN (Virtual Cloud Network)** | `codyssey-vcn` (CIDR: `10.0.0.0/16`) |
+| **Public Subnet** | **Public Subnet** | `codyssey-public-subnet` (CIDR: `10.0.1.0/24`) |
+| **Internet Gateway (IGW)** | **Internet Gateway (IGW)** | `codyssey-igw` (VCN 인터넷 출입 관문) |
+| **Route Table** | **Route Table** | 기본 라우트 규칙: `0.0.0.0/0 ➔ codyssey-igw` |
+| **Security Group (SG)** | **Security List (SL)** | 인바운드: TCP 80 (`0.0.0.0/0`), TCP 22 (`내 IP/32`) |
+| **EC2 Instance** | **Compute Instance** | `codyssey-web-server` (`VM.Standard.E2.1.Micro` Always Free) |
+| **EBS Volume** | **Boot Volume** | 47 GB 블록 스토리지 (Always Free 범위) |
+| **Elastic IP (EIP)** | **Ephemeral / Reserved Public IP** | 인스턴스에 할당된 공용 IPv4 주소 |
+| **IAM Policy / Role** | **OCI IAM Policy & Compartment** | `codyssey-compartment` 전용 최소권한 정책 부여 |
+| **서울 리전 (`ap-northeast-2`)** | **도쿄 리전 (`ap-tokyo-1`)** | OCI Free Tier 가입 계정의 기본 Home Region 특성 반영 |
+
+---
+
 ## 🌐 1. 웹 서비스 외부 접속 증빙
 
-> 명세서 요구사항에 따라 외부 접속 검증 방식(A 또는 B)을 선택하여 기재합니다.
+> 웹 서비스의 가용성 검증을 위해 브라우저 렌더링(A) 및 L4/L7 헬스체크(B) 방식을 구현하여 외부 접속을 검증했습니다.
 
 - **선택한 검증 방식**: **(A) 브라우저 접속** 및 **(B) `/health` 엔드포인트 호출** (둘 다 지원)
 - **접속 정보 (Public IP / URL)**:
